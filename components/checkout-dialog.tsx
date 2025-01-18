@@ -1,38 +1,42 @@
 "use client";
 
+import CheckoutPage from "./checkout-page";
+import convertToSubcurrency from "@/lib/convertToSubcurrency";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
   DialogDescription,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+
+const stripePromise = loadStripe(
+  // @ts-expect-error bla
+  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY,
+);
+
+if (process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY === undefined) {
+  throw new Error("NEXT_PUBLIC_STRIPE_PUBLIC_KEY is not defined");
+}
 
 interface CheckoutDialogProps {
   title: string;
-  price: number;
+  amount: number;
 }
 
-export function CheckoutDialog({ title, price }: CheckoutDialogProps) {
+export function CheckoutDialog({ title, amount }: CheckoutDialogProps) {
   const [open, setOpen] = useState(false);
-
-  const handleCheckout = (event: React.FormEvent) => {
-    event.preventDefault();
-    // Aqui você implementaria a lógica real de checkout
-    alert("Compra realizada com sucesso!");
-    setOpen(false);
-  };
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button>Comprar por R${price.toFixed(2)}</Button>
+        <Button>Comprar por R${amount}</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
@@ -41,27 +45,17 @@ export function CheckoutDialog({ title, price }: CheckoutDialogProps) {
             Complete suas informações de pagamento para adquirir o conteúdo.
           </DialogDescription>
         </DialogHeader>
-        <form onSubmit={handleCheckout}>
-          <div className="grid gap-4 py-4">
-            <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="name" className="text-right">
-                Nome
-              </Label>
-              <Input id="name" className="col-span-3" required />
-            </div>
-            <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="card" className="text-right">
-                Cartão
-              </Label>
-              <Input id="card" className="col-span-3" required />
-            </div>
-          </div>
-          <DialogFooter>
-            <Button type="submit">
-              Confirmar compra de R${price.toFixed(2)}
-            </Button>
-          </DialogFooter>
-        </form>
+
+        <Elements
+          stripe={stripePromise}
+          options={{
+            mode: "payment",
+            amount: convertToSubcurrency(amount),
+            currency: "brl",
+          }}
+        >
+          <CheckoutPage amount={amount} />
+        </Elements>
       </DialogContent>
     </Dialog>
   );

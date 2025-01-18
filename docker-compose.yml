@@ -1,0 +1,13 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ducktales-platform
+    env_file:
+      - .env
+    environment:
+      - AUTH_URL=http://localhost:3000/api/auth
+    ports:
+      - "3000:3000"
+    restart: unless-stopped

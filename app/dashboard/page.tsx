@@ -6,11 +6,15 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-export default function Dashboard() {
+import { auth } from "@/auth";
+
+export default async function Dashboard() {
+  const session = await auth();
+
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-4xl font-bold mb-8">
-        Dashboard de Conteúdo sobre Patos
+        Dashboard de Conteúdo sobre Patos {session?.user?.name}
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <Card>

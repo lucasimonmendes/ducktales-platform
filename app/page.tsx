@@ -26,7 +26,7 @@ export default function Home() {
               Aprenda sobre diferentes espécies, habitats e comportamentos dos
               patos.
             </p>
-            <CheckoutDialog title="Guia Completo sobre Patos" price={29.99} />
+            <CheckoutDialog title="Guia Completo sobre Patos" amount={29.99} />
           </CardContent>
         </Card>
         <Card>
@@ -41,7 +41,7 @@ export default function Home() {
               Dicas de profissionais para fotografar patos em seus habitats
               naturais.
             </p>
-            <CheckoutDialog title="Fotografia de Patos" price={39.99} />
+            <CheckoutDialog title="Fotografia de Patos" amount={39.99} />
           </CardContent>
         </Card>
         <Card>
@@ -57,7 +57,7 @@ export default function Home() {
             </p>
             <CheckoutDialog
               title="Cuidados com Patos de Estimação"
-              price={49.99}
+              amount={49.99}
             />
           </CardContent>
         </Card>
