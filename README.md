@@ -1,5 +1,9 @@
 # 🦆 Ducktales Platform
 
+![Linguagem mais utilizada](https://img.shields.io/github/languages/top/lucasimonmendes/ducktales-platform)
+![Último commit](https://img.shields.io/github/last-commit/lucasimonmendes/ducktales-platform)
+![README bem legal](https://img.shields.io/badge/readme-bem_legal-8A2BE2)
+
 ## 📜 Sobre o Projeto
 
 O **Ducktales Platform** é uma plataforma desenvolvida para venda de conteúdo exclusivo sobre patos (caso de estudo). Este projeto implementa autenticação via Google, proteção de rotas e checkout via popup, utilizando conteinerização com Docker para facilitar a distribuição e execução.
