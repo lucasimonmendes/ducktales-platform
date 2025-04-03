@@ -14,15 +14,15 @@ Aqui você pode incluir prints ou um GIF demonstrando a interface e as funcional
 
 ### Temas
 
-![Demonstração Temas](./docs/media/02_ducktales_theme_pick.gif)
+![Demonstração Temas](./docs/media/0002_ducktales_theme_pick.gif)
 
 ### Checkout popup via Stripe
 
-![Demonstração Checkout](./docs/media/01_ducktales_checkout.gif)
+![Demonstração Checkout](./docs/media/0001_ducktales_checkout.gif)
 
 ### Proteção de rotas
 
-![Demonstração Proteção de rotas](./docs/media/03_ducktales_protected_route.gif)
+![Demonstração Proteção de rotas](./docs/media/0003_ducktales_protected_route.gif)
 
 ## 🚀 Tecnologias Utilizadas
 
